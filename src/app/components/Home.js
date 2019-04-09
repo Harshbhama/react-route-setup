@@ -1,6 +1,6 @@
 import React from "react"
 
-export class Home extends React.Componet{
+export class Home extends React.Component{
 
   render(){
     return(
