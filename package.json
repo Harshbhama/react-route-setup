@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build",
-    "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline --hot --history-api-fallback",
+    "build": "webpack -d && cp src/index.html dist/index.html && webpack-dev-server --content-base src/ --inline --hot",
     "build:prod": "webpack -p && cp src/index.html dist/index.html"
   },
   "keywords": [
@@ -14,8 +14,9 @@
   "author": "Maximilian Schwarzmueller",
   "license": "MIT",
   "dependencies": {
-    "react": "^15.2.1",
-    "react-dom": "^15.2.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-redux": "^7.0.1",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",

@@ -1,29 +1,12 @@
-// import React from "react"
-// import ReactDOM from "react-dom"
-// import {BrowserRouter, Route} from "react-router-dom"
-//
-// import { Root } from "./components/Root"
-// import { Home } from "./components/Home"
-// import { User } from "./components/User"
-//
-// class App extends React.Component{
-//   render(){
-//     return(
-//         <BrowserRouter>
-//           <Route path = "/user" component = {User} />
-//           <Route path = "/home" component = {Home} />
-//         </BrowserRouter>
-//
-//     )
-//   }
-// }
-//
-// ReactDOM.render(<App />, document.getElementById("root"))
+import React from "react"
+import ReactDOM from "react-dom"
 
+import App from "./components/App"
 
 import { createStore, combineReducers, applyMiddleware } from "redux"
 
 import { createLogger } from "redux-logger"
+import { Provider } from "react-redux"
 
 const mathReducer = (state = {
       result: 1,
@@ -51,9 +34,6 @@ const mathReducer = (state = {
 
       return state;
 }
-
-
-
 const userReducer = (state = {
       name: "Harsh",
       age: 23
@@ -79,38 +59,19 @@ const userReducer = (state = {
       return state;
 }
 
-
-
-
-
 const myLogger = (store) => (next) => (action) => {
   console.log("Logged in", action)
   next(action)
 }
 
 
-const store = createStore(combineReducers({mathReducer, userReducer}), {}, applyMiddleware(myLogger, logger))
+const store = createStore(combineReducers({mathReducer, userReducer}), {}, applyMiddleware(myLogger))
 
 store.subscribe(() => {
   console.log("Store updated!!", store.getState())
 })
 
-store.dispatch({
-  type: "ADD",
-  payload: 100
-})
-
-store.dispatch({
-  type: "ADD",
-  payload: 50
-})
-
-store.dispatch({
-  type: "SUBSTRACT",
-  payload: 10
-})
-
-store.dispatch({
-  type: "SET_AGE",
-  payload: 30
-})
+ReactDOM.render(
+  <Provider store = {store}>
+    <App />
+  </Provider>, document.getElementById("root"))
