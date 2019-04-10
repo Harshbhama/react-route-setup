@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux"
 import mathReducer from "./reducers/mathReducer"
 import userReducer from "./reducers/userReducer"
 
+import thunk from "redux-thunk"
 
 const myLogger = (store) => (next) => (action) => {
     console.log("Logged in", action)
@@ -13,7 +14,7 @@ export default createStore(
         mathReducer, 
         userReducer}),
      {}, 
-     applyMiddleware(myLogger))
+     applyMiddleware(thunk))
 
      
       
